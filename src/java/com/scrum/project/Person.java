@@ -18,15 +18,14 @@ public class Person {
 
 private String idps;
 private String adress;
-private String tel;
+
 private String email;
 
     public Person() {
     }
- public Person(String aidps,String aadress,String atel,String aemail) {
+ public Person(String aidps,String aadress,String aemail) {
      this.idps=aidps;
      this.adress=aadress;
-     this.tel=atel;
      this.email=aemail;
     }
     public String getIdps() {
@@ -43,14 +42,6 @@ private String email;
 
     public void setAdress(String adress) {
         this.adress = adress;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
     }
 
     public String getEmail() {

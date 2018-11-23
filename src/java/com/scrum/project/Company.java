@@ -15,40 +15,60 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class Company {
-private String idps;
-private String compName;
-private String RCCM;
-    
+private String idPers;
+private String company_name;
+private String initials;
+private int regNember;
+private String compType;
     public Company() {
         
     }
-public Company(String pidps,String pcompName,String pRccm) {
-        this.idps=pidps;
-        this.compName=pcompName;
-        this.RCCM=pRccm;
-    }
-    public String getIdps() {
-        return idps;
-    }
-
-    public void setIdps(String idps) {
-        this.idps = idps;
+public Company(String pidps,String pcompName, String initial,int regnum,String comptype) {
+        this.idPers=pidps;
+        this.company_name=pcompName;
+        this.initials=initial;
+        this.regNember=regnum;
+        this.compType=comptype;
     }
 
-    public String getCompName() {
-        return compName;
+    public String getIdPers() {
+        return idPers;
     }
 
-    public void setCompName(String compName) {
-        this.compName = compName;
+    public void setIdPers(String idPers) {
+        this.idPers = idPers;
     }
 
-    public String getRCCM() {
-        return RCCM;
+    public String getCompany_name() {
+        return company_name;
     }
 
-    public void setRCCM(String RCCM) {
-        this.RCCM = RCCM;
+    public void setCompany_name(String company_name) {
+        this.company_name = company_name;
     }
-    
+
+    public String getInitials() {
+        return initials;
+    }
+
+    public void setInitials(String initials) {
+        this.initials = initials;
+    }
+
+    public int getRegNember() {
+        return regNember;
+    }
+
+    public void setRegNember(int regNember) {
+        this.regNember = regNember;
+    }
+
+    public String getCompType() {
+        return compType;
+    }
+
+    public void setCompType(String compType) {
+        this.compType = compType;
+    }
+   
 }

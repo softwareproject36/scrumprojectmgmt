@@ -18,17 +18,15 @@ import javax.faces.bean.RequestScoped;
 public class Project {
 private int ID;
 private String projectName;
-private Date Start_Date;
-private Date End_Date;
+
 private String Client;
 private String ProdOwn;
     public Project() {
     }
- public Project(int idy,String projectnamea,Date Startdate, Date EndDate,String Cliente,String ProdOwner) {
+ public Project(int idy,String projectnamea,String Cliente,String ProdOwner) {
      this.ID=idy;
      this.projectName=projectnamea;
-     this.Start_Date=Startdate;
-     this.End_Date=EndDate;
+     
      this.Client=Cliente;
      this.ProdOwn=ProdOwner;
     }
@@ -46,22 +44,6 @@ private String ProdOwn;
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
-    }
-
-    public Date getStart_Date() {
-        return Start_Date;
-    }
-
-    public void setStart_Date(Date Start_Date) {
-        this.Start_Date = Start_Date;
-    }
-
-    public Date getEnd_Date() {
-        return End_Date;
-    }
-
-    public void setEnd_Date(Date End_Date) {
-        this.End_Date = End_Date;
     }
 
     public String getClient() {

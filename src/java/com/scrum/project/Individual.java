@@ -15,18 +15,19 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class Individual {
-private String idps;
-private String name;
-private String middlename;
-private String nickname;
-private String gender;
+private String idPers;
+private String firstName;
+private String lastName;
+private String middleName;
+
+
     
 public Individual(String idpsa,String namea,String middlenamea,String nicknamea,String gendera) {
-    this.idps=idpsa;
-    this.name=namea;
-    this.middlename=middlenamea;
-    this.nickname=nicknamea;
-    this.gender=gendera;
+    this.idPers=idpsa;
+    this.firstName=namea;
+    this.lastName=middlenamea;
+    this.middleName=nicknamea;
+    
     }
     
     /**
@@ -35,44 +36,35 @@ public Individual(String idpsa,String namea,String middlenamea,String nicknamea,
     public Individual() {
     }
 
-    public String getIdps() {
-        return idps;
+    public String getIdPers() {
+        return idPers;
     }
 
-    public void setIdps(String idps) {
-        this.idps = idps;
+    public void setIdPers(String idPers) {
+        this.idPers = idPers;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getMiddlename() {
-        return middlename;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setMiddlename(String middlename) {
-        this.middlename = middlename;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getMiddleName() {
+        return middleName;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-    
 }
