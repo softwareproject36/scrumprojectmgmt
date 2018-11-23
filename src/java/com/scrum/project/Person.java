@@ -1,0 +1,64 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.scrum.project;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+/**
+ *
+ * @author JeanJacques
+ */
+@ManagedBean
+@RequestScoped
+public class Person {
+
+private String idps;
+private String adress;
+private String tel;
+private String email;
+
+    public Person() {
+    }
+ public Person(String aidps,String aadress,String atel,String aemail) {
+     this.idps=aidps;
+     this.adress=aadress;
+     this.tel=atel;
+     this.email=aemail;
+    }
+    public String getIdps() {
+        return idps;
+    }
+
+    public void setIdps(String idps) {
+        this.idps = idps;
+    }
+
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+}
