@@ -5,15 +5,17 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
+        <link rel="stylesheet" href="bootstrap.min.css" />
     </h:head>
     <h:body>
-        <h:form>
+        <center style="margin-top: 200px;">
+        <h:form> 
             <h:panelGrid columns="2">
                 <f:facet name="header">
                     <h:outputText value="SSPM"/>
                 </f:facet>
                 <h:outputLabel value="User"/>
-                <h:inputText value="#{login.user}"/>
+                <h:inputText value="#{login.user}" class="form-control"/>
                 <h:outputLabel value="Password"/>
                 <h:inputSecret value="#{login.password}"/>
                 <f:facet name="footer">
@@ -23,6 +25,6 @@
                 </f:facet>                               
             </h:panelGrid>
         </h:form>
+        </center>
     </h:body>
 </html>
-
