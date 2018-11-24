@@ -91,7 +91,8 @@ sp_number_pred int not null,
 task_code_pred int not null,
 constraint pk_pred_task primary key(prod_id,sp_number,task_code,prod_id_pred,sp_number_pred,task_code_pred),
 constraint fk_pred_task foreign key(prod_id,sp_number,task_code) references task(prod_id,sp_number,task_code)on delete cascade on update cascade,
-constraint fk_predecessor_task foreign key(prod_id_pred,sp_number_pred,task_code_pred) references task(prod_id,sp_number,task_code)
+constraint fk_predecessor_task foreign key(prod_id_pred,sp_number_pred,task_code_pred) references task(prod_id,sp_number,task_
+code)
 )
 
 CREATE TABLE task_assignment
