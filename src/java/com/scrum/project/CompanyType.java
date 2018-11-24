@@ -1,32 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.scrum.project;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+package com.scrum.project;
 
 /**
  *
- * @author Jr
+ * @author JeanJacques
  */
-@ManagedBean
-@RequestScoped
 public class CompanyType {
+      private String type;
 
-   private String comptyp;
-
-    public CompanyType(String comptyp) {
-        this.comptyp = comptyp;
-    }
-   
-    public CompanyType() {
+    public String getType() {
+        return type;
     }
 
-    public String getComptyp() {
-        return comptyp;
+    public void setType(String type) {
+        this.type = type;
     }
-    
+      
 }
