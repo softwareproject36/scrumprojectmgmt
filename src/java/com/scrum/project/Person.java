@@ -5,15 +5,6 @@
  */
 package com.scrum.project;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-
-/**
- *
- * @author JeanJacques
- */
-@ManagedBean
-@RequestScoped
 public class Person {
 
 private String idps;

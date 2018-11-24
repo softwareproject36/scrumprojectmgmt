@@ -5,16 +5,6 @@
  */
 package com.scrum.project;
 
-import java.util.Date;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-
-/**
- *
- * @author JeanJacques
- */
-@ManagedBean
-@RequestScoped
 public class Project {
 private int ID;
 private String projectName;
