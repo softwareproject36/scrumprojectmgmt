@@ -54,6 +54,31 @@ CREATE  TABLE project
     constraint fk_project_person  foreign  key(ownerID)  references person(idPers)on delete cascade on update cascade
 );
 
+create table sysUser
+(
+	idPers varchar(20) NOT NULL,
+	pswd varchar(20) NOT NULL,
+	CONSTRAINT pk_sys_user PRIMARY KEY(idPers),
+	CONSTRAINT fk_user_indiv FOREIGN KEY(idPers) REFERENCES individual(idPers) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE scrumRole
+(
+	scrole varchar(30),
+	CONSTRAINT pk_scrum_role PRIMARY KEY(scrole)
+);
+
+CREATE TABLE projectRole
+(
+	idPers varchar(20) NOT NULL,
+	idProject int NOT NULL,
+	scrole varchar(30),
+	CONSTRAINT pk_project_role PRIMARY KEY(idPers,idProject,scrole),
+	CONSTRAINT fk_project_role_user FOREIGN KEY(idPers) REFERENCES sysUser(idPers) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT fk_project_role FOREIGN KEY(idProject) REFERENCES project(idProject) ON DELETE NO ACTION ON UPDATE NO ACTION,
+	CONSTRAINT fk_project_role_scrum FOREIGN KEY(scrole) REFERENCES scrumRole(scrole) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 /*
 CREATE TABLE sprint
 (
