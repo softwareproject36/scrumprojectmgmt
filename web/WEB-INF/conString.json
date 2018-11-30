@@ -1,0 +1,6 @@
+{
+    "url": "jdbc:postgresql://localhost:5432/scrumprojectmgmt",
+    "user":"postgres",
+    "password":"admin",
+    "driver":"org.postgresql.Driver"
+}

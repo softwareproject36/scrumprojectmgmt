@@ -79,6 +79,21 @@ CREATE TABLE projectRole
 	CONSTRAINT fk_project_role_scrum FOREIGN KEY(scrole) REFERENCES scrumRole(scrole) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+/*===========DONNEES DE TEST=====================*/
+INSERT INTO person(idPers,address,email) values('00000000','Goma','admin@gmail.com');
+
+INSERT INTO individual(idPers,firstName,lastName,middleName) values('00000000','admin','admin','admin');
+
+INSERT INTO sysUser (idPers,pswd) values('00000000','1234');
+
+INSERT INTO project(idProject,projectName,ownerID) values(1,'Test','00000000');
+
+INSERT INTO scrumRole(scrole) values('Product owner'),('ScrumMaster'),('Developper'),('Analyst'),('Designer'),('Tester');
+
+INSERT INTO projectRole(idPers,idProject,scrole) values('00000000',1,'Product owner');
+/*==================================================*/
+
+
 /*
 CREATE TABLE sprint
 (
