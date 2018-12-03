@@ -5,36 +5,27 @@
     <h:head>
         <title>project</title>
     </h:head>
-    <h:body>        
+    <h:body>
+
+        <div>
+            When you register a new project using your account, you are automatically considered as the project owner.<br/>
+            If you are not, and wants to register the project under the owner's account, use his account or 
+            create an account for him and then register the project.
+        </div>
+        
       <h:form>
              <table>
                  <tr>
                      <td>Id Project: </td>
-                     <td><input> </input></td>
+                     <td><h:inputText value="#{dataCollection.project.idProj}"/></td>
                  </tr>
                  <tr>
                      <td>Project Name:</td>
-                     <td><input> </input></td>
-                 </tr>
-                 <tr>
-                     <td>Owner ID </td>
-                     <td><input name="OwnerId" value="Enter the owner Id here"> </input></td>
-                 </tr>
-                 <tr>
-                      </tr>
-                 <tr>
-                     <td> Id person: </td>
-                     <td><input name="IndPersId" value="Enter the person ID"> </input></td>
-                 </tr>
-                   <tr>
-                     <td>Individual Id: </td>
-                     <td><input name="Idindividual" value=""> </input></td>
-                 </tr>
+                     <td><h:inputTextarea rows="5" value="#{dataCollection.project.projectName}"/></td>
+                 </tr>                                  
                  <tr>
                      <td> </td>
-                    <td><h:commandButton value="Add" /></td>
-                    <td><h:commandButton value="Update"/></td>
-                    <td><h:commandButton value="Remove"/></td>
+                     <td><h:commandButton value="Save" action="#{dataCollection.saveProject(login.user)}" /></td>
                  </tr>
              </table>
          </h:form>

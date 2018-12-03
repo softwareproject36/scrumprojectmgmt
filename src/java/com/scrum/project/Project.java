@@ -1,27 +1,22 @@
 
 package com.scrum.project;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
+import org.json.simple.parser.ParseException;
+
 public class Project {
-private int ID;
-private String projectName;
+    private int idProj;
+    private String projectName;
+    private Person owner;
 
-private String Client;
-private String ProdOwn;
-    public Project() {
-    }
- public Project(int idy,String projectnamea,String Cliente,String ProdOwner) {
-     this.ID=idy;
-     this.projectName=projectnamea;
-     
-     this.Client=Cliente;
-     this.ProdOwn=ProdOwner;
-    }
-    public int getID() {
-        return ID;
+    public int getIdProj() {
+        return idProj;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setIdProj(int idProj) {
+        this.idProj = idProj;
     }
 
     public String getProjectName() {
@@ -32,20 +27,34 @@ private String ProdOwn;
         this.projectName = projectName;
     }
 
-    public String getClient() {
-        return Client;
+    public Person getOwner() {
+        return owner;
     }
 
-    public void setClient(String Client) {
-        this.Client = Client;
+    public void setOwner(Person owner) {
+        this.owner = owner;
     }
+    
+    
 
-    public String getProdOwn() {
-        return ProdOwn;
+    public Project() {
     }
-
-    public void setProdOwn(String ProdOwn) {
-        this.ProdOwn = ProdOwn;
+ 
+    public Project(int idProj,String projectName,Person owner)
+    {
+        this.idProj=idProj;
+        this.projectName=projectName;
+        this.owner=owner;
+    }
+    
+    public void save(Project project) throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, ParseException
+    {
+        DBConnection conn=new DBConnection();
+        conn.Execute_Query("INSERT INTO project(idproject,projectname,ownerid) VALUES('"
+                + project.idProj + "','"
+                + project.projectName.replace("'", "''") + "','" 
+                + project.owner.getIdpers() + "')"
+        );
     }
     
 }

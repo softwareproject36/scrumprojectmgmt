@@ -3,13 +3,13 @@ package com.scrum.project;
 
 import java.io.IOException;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import java.sql.SQLException;
 import org.json.simple.parser.ParseException;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class Login {
 
     private String user;

@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/tableLayout.css"/>
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+        <table cellspacing="10px">
+            <tr>
+                <td id="top" colspan="3">
+                    <ui:insert name="top">
+                        <h:form>
+                        <p:menubar>
+                            <p:submenu label="File">
+                                <p:submenu label="New">
+                                    <p:menuitem ><h:commandLink value="Project" action="#{navigation.project()}"/></p:menuitem>
+                                    <ui:remove>
+                                        <p:menuitem ><h:commandLink value="Person" action="#{navigation.individual()}"/></p:menuitem>
+                                        <p:menuitem ><h:commandLink value="Company" action="#{navigation.company()}"/></p:menuitem>
+                                        <p:menuitem ><h:commandLink value="Company Type" action="#{navigation.companyType()}"/></p:menuitem>
+                                    </ui:remove>
+                                    <p:submenu label="Project Team">
+                                        <p:menuitem>
+                                            <h:commandLink value="Product owner">
+                                                <f:param name="member" value="1"/>
+                                            </h:commandLink>
+                                        </p:menuitem>
+                                        <p:menuitem>
+                                            <h:commandLink value="ScrumMaster">
+                                                <f:param name="member" value="2"/>
+                                            </h:commandLink>
+                                        </p:menuitem>
+                                        <p:menuitem>
+                                            <h:commandLink value="Developper">
+                                                <f:param name="member" value="3"/>
+                                            </h:commandLink>
+                                        </p:menuitem>
+                                        <p:menuitem>
+                                            <h:commandLink value="Analyst">
+                                                <f:param name="member" value="4"/>
+                                            </h:commandLink>
+                                        </p:menuitem>
+                                        <p:menuitem>
+                                            <h:commandLink value="Designer">
+                                                <f:param name="member" value="5"/>
+                                            </h:commandLink>
+                                        </p:menuitem>
+                                        <p:menuitem>
+                                            <h:commandLink value="Tester">
+                                                <f:param name="member" value="6"/>
+                                            </h:commandLink>
+                                        </p:menuitem>
+                                    </p:submenu>
+                                    <p:menuitem ><h:commandLink value="Telephone Number" action="#{navigation.telephone()}"/></p:menuitem>
+                                </p:submenu>
+                                <p:menuitem ><h:commandLink value="Analysis Documents" action="analyse"/></p:menuitem>
+                            </p:submenu>
+                            <p:submenu label="Edit">
+                                <p:submenu label="Update">
+                                    <p:menuitem value="Project" url="#"/>
+                                    <p:menuitem value="Person" url="#"/>
+                                    <p:menuitem value="Company" url="#"/>
+                                    <p:menuitem value="Company Type" url="#"/>
+                                    <p:menuitem value="Telephone Number" url="#"/>
+                                </p:submenu>
+                            </p:submenu>
+                            <p:submenu label="Follow-up">
+                                <p:menuitem><h:commandLink value="Daily Planned Tasks" action="dailyPannedTasks"/></p:menuitem>
+                            </p:submenu>
+                            <p:submenu label="Settings">
+                                <p:menuitem value="Users" url="#"></p:menuitem>
+                            </p:submenu>
+                        </p:menubar>
+                        </h:form>
+                    </ui:insert>
+                </td>
+            </tr>
+            <tr>
+                <td id="left">
+                    <ui:insert name="left">
+                        <h:form>
+                            <ui:repeat value="#{dataCollection.projects(login.user)}" var="s">
+                                <h:commandLink value="#{s.projectName}"/> <br/><br/>
+                            </ui:repeat>
+                        </h:form>                        
+                    </ui:insert>
+                </td>
+                <td id="content">
+                    <ui:insert name="content">Content</ui:insert>
+                </td>
+                <td id="right">
+                    <ui:insert name="right">Right</ui:insert>
+                </td>
+            </tr>
+            <tr>
+                <td id="bottom" colspan="3">
+                    <ui:insert name="bottom">Bottom</ui:insert>
+                </td>
+            </tr>
+        </table>
+    </h:body>
+
+</html>

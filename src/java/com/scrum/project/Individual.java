@@ -1,26 +1,23 @@
 
 package com.scrum.project;
 
-public class Individual {
-private String idPers;
-private String firstName;
-private String lastName;
-private String middleName;
+public class Individual extends Person{
+    private String idPers;
+    private String firstName;
+    private String lastName;
+    private String middleName;
 
-
-    
-public Individual(String idpsa,String namea,String middlenamea,String nicknamea,String gendera) {
-    this.idPers=idpsa;
-    this.firstName=namea;
-    this.lastName=middlenamea;
-    this.middleName=nicknamea;
-    
+    public Individual()
+    {
+        
     }
     
-    /**
-     * Creates a new instance of Individual
-     */
-    public Individual() {
+    public Individual(String idPers,String firstName,String lastName,String middleName) {
+        this.idPers=idPers;
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.middleName=middleName;
+    
     }
 
     public String getIdPers() {

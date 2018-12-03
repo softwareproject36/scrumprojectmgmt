@@ -3,26 +3,33 @@ package com.scrum.project;
 
 public class Person {
 
-private String idps;
-private String adress;
-
-private String email;
+    private String idpers;
+    private String adress;
+    private String email;
 
     public Person() {
+        
     }
- public Person(String aidps,String aadress,String aemail) {
-     this.idps=aidps;
-     this.adress=aadress;
-     this.email=aemail;
+    
+    public Person(String idpers)
+    {
+        this.idpers=idpers;
     }
-    public String getIdps() {
-        return idps;
+    
+    public Person(String idpers,String adress,String email) {
+        this.idpers=idpers;
+        this.adress=adress;
+        this.email=email;
     }
 
-    public void setIdps(String idps) {
-        this.idps = idps;
+    public String getIdpers() {
+        return idpers;
     }
 
+    public void setIdpers(String idpers) {
+        this.idpers = idpers;
+    }
+    
     public String getAdress() {
         return adress;
     }
