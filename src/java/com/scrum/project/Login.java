@@ -45,8 +45,8 @@ public class Login {
         
         DBConnection conn=new DBConnection();
         try {            
-            int nbre= Integer.valueOf(conn.Show_Data("select count(*) as nbre from sysUser "
-                    + "where idPers='" + user.replace("'", "''") + "' "
+            int nbre= Integer.valueOf(conn.Show_Data("select count(*) as nbre from user_account "
+                    + "where account='" + user.replace("'", "''") + "' "
                     + "and pswd='" + password.replace("'", "''") + "'", 
                     "nbre", 1));
             

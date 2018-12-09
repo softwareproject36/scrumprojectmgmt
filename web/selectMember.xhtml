@@ -6,14 +6,8 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:form>
-           #{dataCollection.message}<br/>
-           <h:inputHidden value="#{dataCollection.navigation}"/><br/>
-           <h:commandButton value="OK" action="#{dataCollection.forwardPage()}"/>
-           
-        </h:form>
-        
-        
+        #{navigation.getpIdProj()}<br/>
+        #{navigation.getpMemberRole()}
     </h:body>
 </html>
 

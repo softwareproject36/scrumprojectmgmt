@@ -9,7 +9,7 @@
 
         <div>
             When you register a new project using your account, you are automatically considered as the project owner.<br/>
-            If you are not, and wants to register the project under the owner's account, use his account or 
+            If you are not, and wants to register the project under the owner's account, open his account or 
             create an account for him and then register the project.
         </div>
         
@@ -17,15 +17,15 @@
              <table>
                  <tr>
                      <td>Id Project: </td>
-                     <td><h:inputText value="#{dataCollection.project.idProj}"/></td>
+                     <td><h:inputText value="#{dataCollection.projectMemberRole.project.idProj}"/></td>
                  </tr>
                  <tr>
                      <td>Project Name:</td>
-                     <td><h:inputTextarea rows="5" value="#{dataCollection.project.projectName}"/></td>
+                     <td><h:inputTextarea rows="5" value="#{dataCollection.projectMemberRole.project.projectName}"/></td>
                  </tr>                                  
                  <tr>
                      <td> </td>
-                     <td><h:commandButton value="Save" action="#{dataCollection.saveProject(login.user)}" /></td>
+                     <td><h:commandButton value="Save" action="#{dataCollection.saveProject()}" /></td>
                  </tr>
              </table>
          </h:form>

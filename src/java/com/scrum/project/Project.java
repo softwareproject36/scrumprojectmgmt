@@ -7,15 +7,23 @@ import java.sql.SQLException;
 import org.json.simple.parser.ParseException;
 
 public class Project {
-    private int idProj;
+    private String idProj;
     private String projectName;
-    private Person owner;
+    
+    public Project() {
+    }
+ 
+    public Project(String idProj,String projectName)
+    {
+        this.idProj=idProj;
+        this.projectName=projectName;
+    }
 
-    public int getIdProj() {
+    public String getIdProj() {
         return idProj;
     }
 
-    public void setIdProj(int idProj) {
+    public void setIdProj(String idProj) {
         this.idProj = idProj;
     }
 
@@ -26,34 +34,13 @@ public class Project {
     public void setProjectName(String projectName) {
         this.projectName = projectName;
     }
-
-    public Person getOwner() {
-        return owner;
-    }
-
-    public void setOwner(Person owner) {
-        this.owner = owner;
-    }
-    
-    
-
-    public Project() {
-    }
- 
-    public Project(int idProj,String projectName,Person owner)
-    {
-        this.idProj=idProj;
-        this.projectName=projectName;
-        this.owner=owner;
-    }
     
     public void save(Project project) throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, ParseException
     {
         DBConnection conn=new DBConnection();
-        conn.Execute_Query("INSERT INTO project(idproject,projectname,ownerid) VALUES('"
+        conn.Execute_Query("INSERT INTO scrum_project(id_project,project_name) VALUES('"
                 + project.idProj + "','"
-                + project.projectName.replace("'", "''") + "','" 
-                + project.owner.getIdpers() + "')"
+                + project.projectName.replace("'", "''") + "')" 
         );
     }
     

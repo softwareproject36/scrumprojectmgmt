@@ -30,33 +30,39 @@
                                     </ui:remove>
                                     <p:submenu label="Project Team">
                                         <p:menuitem>
-                                            <h:commandLink value="Product owner">
-                                                <f:param name="member" value="1"/>
+                                            <h:commandLink value="Product owner" action="#{navigation.selectProject()}">
+                                                <f:param name="member" value="Product owner"/>
+                                                <f:param name="userrole" value="Project owner"/>
                                             </h:commandLink>
                                         </p:menuitem>
                                         <p:menuitem>
-                                            <h:commandLink value="ScrumMaster">
-                                                <f:param name="member" value="2"/>
+                                            <h:commandLink value="ScrumMaster" action="#{navigation.selectProject()}">
+                                                <f:param name="member" value="ScrumMaster"/>
+                                                <f:param name="userrole" value="Product owner"/>
                                             </h:commandLink>
                                         </p:menuitem>
                                         <p:menuitem>
-                                            <h:commandLink value="Developper">
-                                                <f:param name="member" value="3"/>
+                                            <h:commandLink value="Developper" action="#{navigation.selectProject()}">
+                                                <f:param name="member" value="Developper"/>
+                                                <f:param name="userrole" value="ScrumMaster"/>
                                             </h:commandLink>
                                         </p:menuitem>
                                         <p:menuitem>
-                                            <h:commandLink value="Analyst">
-                                                <f:param name="member" value="4"/>
+                                            <h:commandLink value="Analyst" action="#{navigation.selectProject()}">
+                                                <f:param name="member" value="Analyst"/>
+                                                <f:param name="userrole" value="ScrumMaster"/>
                                             </h:commandLink>
                                         </p:menuitem>
                                         <p:menuitem>
-                                            <h:commandLink value="Designer">
-                                                <f:param name="member" value="5"/>
+                                            <h:commandLink value="Designer" action="#{navigation.selectProject()}">
+                                                <f:param name="member" value="Designer"/>
+                                                <f:param name="userrole" value="ScrumMaster"/>
                                             </h:commandLink>
                                         </p:menuitem>
                                         <p:menuitem>
-                                            <h:commandLink value="Tester">
-                                                <f:param name="member" value="6"/>
+                                            <h:commandLink value="Tester" action="#{navigation.selectProject()}">
+                                                <f:param name="member" value="Tester"/>
+                                                <f:param name="userrole" value="ScrumMaster"/>
                                             </h:commandLink>
                                         </p:menuitem>
                                     </p:submenu>
@@ -79,6 +85,7 @@
                             <p:submenu label="Settings">
                                 <p:menuitem value="Users" url="#"></p:menuitem>
                             </p:submenu>
+                            <p:menuitem><h:commandLink value="Help" action="help"/></p:menuitem>
                         </p:menubar>
                         </h:form>
                     </ui:insert>

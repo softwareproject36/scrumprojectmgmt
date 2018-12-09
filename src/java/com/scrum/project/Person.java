@@ -3,9 +3,9 @@ package com.scrum.project;
 
 public class Person {
 
-    private String idpers;
-    private String adress;
-    private String email;
+    protected String idpers;
+    protected String adress;
+    protected String email;
 
     public Person() {
         

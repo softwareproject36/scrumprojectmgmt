@@ -1,6 +1,7 @@
 
 CREATE   DATABASE  scrumprojectmgmt;
 
+/*
 CREATE TABLE person(
     idPers varchar(20) NOT NULL,
     address varchar(50) NOT NULL,
@@ -78,9 +79,10 @@ CREATE TABLE projectRole
 	CONSTRAINT fk_project_role FOREIGN KEY(idProject) REFERENCES project(idProject) ON DELETE NO ACTION ON UPDATE NO ACTION,
 	CONSTRAINT fk_project_role_scrum FOREIGN KEY(scrole) REFERENCES scrumRole(scrole) ON DELETE CASCADE ON UPDATE CASCADE
 );
+*/
 
 /*===========DONNEES DE TEST=====================*/
-INSERT INTO person(idPers,address,email) values('00000000','Goma','admin@gmail.com');
+/*INSERT INTO person(idPers,address,email) values('00000000','Goma','admin@gmail.com');
 
 INSERT INTO individual(idPers,firstName,lastName,middleName) values('00000000','admin','admin','admin');
 
@@ -90,8 +92,76 @@ INSERT INTO project(idProject,projectName,ownerID) values(1,'Test','00000000');
 
 INSERT INTO scrumRole(scrole) values('Product owner'),('ScrumMaster'),('Developper'),('Analyst'),('Designer'),('Tester');
 
-INSERT INTO projectRole(idPers,idProject,scrole) values('00000000',1,'Product owner');
+INSERT INTO projectRole(idPers,idProject,scrole) values('00000000',1,'Product owner');*/
 /*==================================================*/
+
+CREATE TABLE member_categorie
+(
+	category varchar(50) NOT NULL,
+	CONSTRAINT pk_categ PRIMARY KEY(category)
+);
+
+CREATE TABLE project_member
+(
+	account varchar(20) NOT NULL,
+	name varchar(250) NOT NULL,
+	initials varchar(20),
+	addres varchar(100),
+	tel varchar(13) NOT NULL,
+	email varchar(30) NOT NULL,
+	category varchar(50) NOT NULL,
+	CONSTRAINT pk_project_member PRIMARY KEY(account),
+	CONSTRAINT fk_member_category FOREIGN KEY(category) REFERENCES member_categorie(category) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE user_account
+(
+	account varchar(20) NOT NULL,
+	pswd varchar(12) NOT NULL,
+	CONSTRAINT pk_member_account PRIMARY KEY(account),
+	CONSTRAINT fk_member_account FOREIGN KEY(account) REFERENCES project_member(account) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE scrum_project
+(
+	id_project varchar(20) NOT NULL,
+	project_name varchar(250) NOT NULL,
+	CONSTRAINT pk_scrum_project PRIMARY KEY(id_project)
+);
+
+CREATE TABLE scrum_role
+(
+	scr_role varchar(30),
+	CONSTRAINT pk_scr_role PRIMARY KEY(scr_role)
+);
+
+CREATE TABLE project_member_role
+(
+	account varchar(20) NOT NULL,
+	id_project varchar(20) NOT NULL,
+	scr_role varchar(30),
+	CONSTRAINT pk_project_member_role PRIMARY KEY(account,id_project),
+	CONSTRAINT fk_member_role FOREIGN KEY(account) REFERENCES project_member(account) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT fk_proj_role FOREIGN KEY(id_project) REFERENCES scrum_project(id_project) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT fk_proj_scr_role FOREIGN KEY(scr_role) REFERENCES scrum_role(scr_role) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+/*===============TEST DATA===================*/
+INSERT INTO scrum_role(scr_role) values('Project owner'),('Product owner'),('ScrumMaster'),('Developper'),('Analyst'),('Designer'),('Tester');
+
+INSERT INTO member_categorie(category) values('Administrator'),('Individual'),('Hospital'),('School'),('University'),('Shop'),('Bank'),('Government');
+
+INSERT INTO project_member(account,name,initials,addres,tel,email,category) values
+			('admin','Administrator','-','Goma','+243994401108','kamkyaj@gmail.com','Administrator'),
+			('Jerome','Jerome Kambale Kyamuva','-','Goma','+243994401108','kamkyaj@gmail.com','Individual'),
+			('dgrnk','Direction Générale des Recettes du Nord-Kivu','-','Goma','-','dgrnk@gmail.com','Government');
+
+INSERT INTO user_account(account,pswd) values('admin','admin'),('Jerome','jerome'),('dgrnk','dgrnk');
+
+INSERT INTO scrum_project(id_project,project_name) values('1','Test'),('2','Gestion Annuaire Informatique'),('3','KODInet');
+
+INSERT INTO project_member_role(account,id_project,scr_role) values('Jerome','1','Project owner'),('Jerome','2','Project owner'),('dgrnk','3','Project owner');
+
 
 
 /*

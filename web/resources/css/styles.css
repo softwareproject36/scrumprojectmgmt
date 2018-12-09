@@ -1,0 +1,31 @@
+body{
+    /*background-color: green;*/
+}
+.couleur{
+    color:red;
+}
+
+.largeur{
+    width: 250px;
+}
+
+.employeeTable{
+    border-collapse: collapse;
+    border: 1px solid #000000;
+}
+
+.employeeTableHeader{
+    text-align: center;
+    background: none repeat scroll 0 0 #B5B5B5;
+    border-bottom: 1px solid #000000
+}
+
+.employeeTableoddRow{
+    text-align: center;
+    background: none repeat scroll 0 #FFFFFF
+}
+
+.employeeTableEvenRow{
+    text-align: center;
+    background: none repeat scroll 0 0 #D3D3D3;
+}
