@@ -2,43 +2,62 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
         <h:outputStylesheet library="css" name="styles.css"/> 
     </h:head>
     <h:body>
-        #{navigation.member}<br/>
-        #{navigation.userrole}
+        
+        #{projectBean.userrole}<br/>
+        #{projectBean.getpUserId()}<br/>
+        
         <h:form>
-            <p:dataTable value="#{dataCollection.projectMemberRole.ListProjects(login.user,navigation.userrole)}" var="PJMember">
-                <p:column>
-                    <f:facet name="header">Project ID</f:facet>
-                    #{PJMember.project.idProj}
-                </p:column>
-                <p:column>
-                    <f:facet name="header">Project Name</f:facet>                    
-                    <h:commandLink value="#{PJMember.project.projectName}" action="#{navigation.selectMember()}">
-                        <f:param name="pIdProj" value="#{PJMember.project.idProj}"/>
-                        <f:param name="pMemberRole" value="#{navigation.member}"/>
-                    </h:commandLink>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">Owner</f:facet>
-                    #{PJMember.member.name}
-                </p:column>
-                <p:column>
-                    <f:facet name="header">Action</f:facet>
-                    <h:commandButton value="Select" action="#{navigation.selectMember()}"/>
-                </p:column>
-            </p:dataTable>            
             
-            <h:commandLink value="Select member" action="#{navigation.selectMember()}">
-                <f:param name="pIdProj" value="1"/>
-                <f:param name="pMemberRole" value="2"/>
-            </h:commandLink>
+            <p:dataTable var="project" value="#{projectBean.lstProjects()}"> 
+                
+                <p:column headerText="ID">
+                    <h:outputText value="#{project.idProj}"/>
+                </p:column>
+                <ui:remove>
+                <p:column headerText="Project Name">
+                    <p:commandLink value="#{project.projectName}" action="#{projectBean.selectMemberRole()}">
+                        <f:param name="pIdProj" value="#{project.idProj}"/>
+                        <f:param name="pUserId" value="#{login.user}"/>
+                    </p:commandLink>
+                </p:column>
+                </ui:remove>
+                <p:column headerText="Project Name">
+                    <p:link value="#{project.projectName}" outcome="selectMemberRole.xhtml">
+                        <f:param name="pIdProj" value="#{project.idProj}"/>
+                    </p:link>
+                </p:column>        
+                <p:column headerText="Project Owner">
+                    <h:outputText value="#{project.projectOwner}"/>
+                </p:column>
+            </p:dataTable>
+            
+            
+            <ui:remove>
+            <p:dataTable value="#{dataCollection.projectMemberRole.ListProjects(login.user,navigation.userrole)}" var="PJMember">
+                <p:column headerText="Select">
+                    <p:commandButton value="Select" action="#{navigation.selectMember()}">
+                    
+                    </p:commandButton>
+                </p:column>
+                <p:column headerText="Project ID">
+                    <h:outputText value="#{PJMember.project.idProj}"/>
+                </p:column>
+                <p:column headerText="Project Name" sortBy="#{PJMember.project.projectName}">
+                    <h:outputText value="#{PJMember.project.projectName}"/>
+                </p:column>
+                <p:column headerText="Project Name">
+                    <h:outputText value="#{PJMember.member.name}"/>
+                </p:column>
+            </p:dataTable>
+            </ui:remove>
         </h:form>
     </h:body>
 </html>

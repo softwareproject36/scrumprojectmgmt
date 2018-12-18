@@ -9,6 +9,7 @@ import org.json.simple.parser.ParseException;
 public class Project {
     private String idProj;
     private String projectName;
+    private String projectOwner;
     
     public Project() {
     }
@@ -19,6 +20,12 @@ public class Project {
         this.projectName=projectName;
     }
 
+    public Project(String idProj, String projectName, String projectOwner) {
+        this.idProj = idProj;
+        this.projectName = projectName;
+        this.projectOwner = projectOwner;
+    }
+    
     public String getIdProj() {
         return idProj;
     }
@@ -33,6 +40,14 @@ public class Project {
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
+    }
+
+    public String getProjectOwner() {
+        return projectOwner;
+    }
+
+    public void setProjectOwner(String projectOwner) {
+        this.projectOwner = projectOwner;
     }
     
     public void save(Project project) throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, ParseException

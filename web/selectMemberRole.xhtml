@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+                
+        <h2>Select the Role</h2> 
+        
+        <h:form rendered="#{memberRoleBean.role(login.user, param['pIdProj']) eq 'Project owner'}">
+            <p:link value="Product owner" outcome="selectMember.xhtml">
+                <f:param name="pIdProj" value="#{param['pIdProj']}"/>
+                <f:param name="userrole" value="Product owner"/>
+            </p:link>
+        </h:form>
+            
+        <h:form rendered="#{memberRoleBean.role(login.user, param['pIdProj']) eq 'Product owner'}">
+            <p:link value="ScrumMaster" outcome="selectMember.xhtml">
+                <f:param name="pIdProj" value="#{param['pIdProj']}"/>
+                <f:param name="userrole" value="ScrumMaster"/>
+            </p:link>
+        </h:form>
+        
+        <h:form rendered="#{memberRoleBean.role(login.user, param['pIdProj']) eq 'ScrumMaster'}">
+            <p:link value="Analyst" outcome="selectMember.xhtml">
+                <f:param name="pIdProj" value="#{param['pIdProj']}"/>
+                <f:param name="userrole" value="Analyst"/>
+            </p:link><br/><br/>
+            
+            <p:link value="Designer" outcome="selectMember.xhtml">
+                <f:param name="pIdProj" value="#{param['pIdProj']}"/>
+                <f:param name="userrole" value="Designer"/>
+            </p:link><br/><br/>
+            
+            <p:link value="Developer" outcome="selectMember.xhtml">
+                <f:param name="pIdProj" value="#{param['pIdProj']}"/>
+                <f:param name="userrole" value="Developper"/>
+            </p:link><br/><br/>
+            
+            <p:link value="Tester" outcome="selectMember.xhtml">
+                <f:param name="pIdProj" value="#{param['pIdProj']}"/>
+                <f:param name="userrole" value="Tester"/>
+            </p:link>
+        </h:form>
+        
+    </h:body>
+</html>
+

@@ -72,6 +72,16 @@ public class ProjectMemberRole {
         );
     }
     
+    public void saveMemberRole(ProjectMemberRole projectMemberRole) throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, ParseException
+    {
+        DBConnection conn=new DBConnection();
+        conn.Execute_Query("INSERT INTO project_member_role(account, id_project, scr_role) VALUES('"
+                + projectMemberRole.member.getAccount() + "','"
+                + projectMemberRole.project.getIdProj() + "','"
+                + projectMemberRole.role + "')" 
+            );
+    }
+    
     /*
     List of Project Member Role for DataTable
     =========================================

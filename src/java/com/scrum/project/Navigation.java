@@ -3,10 +3,10 @@ package com.scrum.project;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+//import javax.faces.bean.RequestScoped;
 
 @ManagedBean
-@RequestScoped
+//@RequestScoped
 public class Navigation {
     
     @ManagedProperty(value="#{param.member}")
