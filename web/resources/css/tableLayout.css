@@ -2,6 +2,10 @@ body {
     margin: 0px;
 }
 
+table{
+    width: 100%;
+}
+
 #top {
     background-color: #036fab;
     color: white;

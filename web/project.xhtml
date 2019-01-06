@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>project</title>
     </h:head>
@@ -15,17 +17,19 @@
         
       <h:form>
              <table>
+                 <ui:remove>
                  <tr>
                      <td>Id Project: </td>
                      <td><h:inputText value="#{dataCollection.projectMemberRole.project.idProj}"/></td>
                  </tr>
+                </ui:remove>
                  <tr>
-                     <td>Project Name:</td>
-                     <td><h:inputTextarea rows="5" value="#{dataCollection.projectMemberRole.project.projectName}"/></td>
+                     <td><p:outputLabel value="Project Name:"/></td>
+                     <td><p:inputTextarea rows="2" cols="50" value="#{dataCollection.projectMemberRole.project.projectName}"/></td>
                  </tr>                                  
                  <tr>
                      <td> </td>
-                     <td><h:commandButton value="Save" action="#{dataCollection.saveProject()}" /></td>
+                     <td><p:commandButton value="Save" action="#{dataCollection.saveProject()}" /></td>
                  </tr>
              </table>
          </h:form>

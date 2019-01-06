@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.json.simple.parser.ParseException;
 
@@ -13,6 +14,8 @@ public class ProjectMemberRole {
     private ProjectMember member=new ProjectMember();
     private Project project=new Project();
     private String role;
+    private String userid;
+    private Date saving_date=new Date();
     
     public ProjectMemberRole()
     {
@@ -49,15 +52,33 @@ public class ProjectMemberRole {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public Date getSaving_date() {
+        return saving_date;
+    }
+
+    public void setSaving_date(Date saving_date) {
+        this.saving_date = saving_date;
+    }
         
     public void saveNewProject(ProjectMemberRole projectMemberRole) throws ClassNotFoundException, SQLException, IOException, FileNotFoundException, ParseException
     {
         DBConnection conn=new DBConnection();
+        String idProj=conn.Show_Data("select pjID from (select substring(CAST(uuid_in((md5((random())::text))::cstring) as varchar(50)),1,8) as pjID) t where pjID not in(select id_project from scrum_project)", "pjID", 1);
         conn.Execute_Query("BEGIN; "
-                + "INSERT INTO scrum_project(id_project,project_name) VALUES("
-                + "'" + projectMemberRole.project.getIdProj() + "',"
-                + "'" + projectMemberRole.project.getProjectName().replace("'", "''") + "'"
-                + "); "
+                + "INSERT INTO scrum_project(id_project,project_name,userid) SELECT "
+                + "'" + idProj + "',"
+                + "'" + projectMemberRole.project.getProjectName().replace("'", "''") + "',"
+                + "'" + projectMemberRole.member.getAccount() + "'"
+                + "; "
                 + "INSERT INTO project_member_role("
                 + "account,"
                 + "id_project,"
@@ -65,7 +86,7 @@ public class ProjectMemberRole {
                 + ") "
                 + "VALUES("
                 + "'" + projectMemberRole.member.getAccount() + "',"
-                + "'" + projectMemberRole.project.getIdProj() + "',"
+                + "'" + idProj + "',"
                 + "'Project owner'"
                 + "); "
                 + "COMMIT;"

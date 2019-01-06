@@ -89,6 +89,20 @@ public class Navigation {
         return "selectMember";
     }
     
+    //Navigate to Project Management Page
+    //===================================
+    public String projectMgment()
+    {
+        return "projectManagement";
+    }
+    
+    //Navigation to Product Backlog page
+    //=================================
+    public String productBacklog()
+    {
+        return "productBacklog";
+    }
+    
     public Navigation() {
     }
     

@@ -162,6 +162,68 @@ INSERT INTO scrum_project(id_project,project_name) values('1','Test'),('2','Gest
 
 INSERT INTO project_member_role(account,id_project,scr_role) values('Jerome','1','Project owner'),('Jerome','2','Project owner'),('dgrnk','3','Project owner');
 
+/*=============PRODUCT BACKLOG==============*/
+CREATE TABLE backlog_item_domain
+(
+	domain varchar(50),
+	CONSTRAINT pk_bid PRIMARY KEY(domain)
+);
+
+
+CREATE TABLE product_backlog_item
+(
+	pbl_id uuid,
+	id_project varchar(20),
+	title varchar(100),
+	type_of_user varchar(50),
+	user_story text,
+	story_goal text,
+	item_priority int,
+	estimation real,
+	acceptance text,
+	domain varchar(50),
+	userid varchar(20),
+	saving_date date,
+	CONSTRAINT pk_pbl PRIMARY KEY(pbl_id),
+	CONSTRAINT uk_pbl UNIQUE(id_project,type_of_user,user_story),
+	CONSTRAINT fk_pd_backlog_pj FOREIGN KEY(id_project) REFERENCES scrum_project(id_project) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT fk_pd_backlog_dom FOREIGN KEY(domain) REFERENCES backlog_item_domain(domain) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+/*==========DOMAIN DATA===========*/
+INSERT INTO backlog_item_domain VALUES('Functional requirement'),('Security'),('Design'),('User support'),('Settings');
+
+/*=========scrum_project table modification==========*/
+ALTER TABLE scrum_project ADD 
+userid varchar(20);
+
+ALTER TABLE scrum_project ADD
+saving_date timestamptz default (now() AT TIME ZONE 'utc');
+
+ALTER TABLE scrum_project ADD
+CONSTRAINT uk_name UNIQUE(project_name,userid);
+
+/*=======Sprint table=========*/
+CREATE TABLE sprint
+(
+	pbl_id uuid NOT NULL,
+	id_project character varying(20),
+	start_date date,
+	end_date date,
+	goal text,
+	userid character varying(20),
+	saving_date timestamptz default (now() AT TIME ZONE 'utc'),
+	CONSTRAINT pk_sprint PRIMARY KEY(pbl_id),
+	CONSTRAINT fk_sp_pj FOREIGN KEY(id_project) REFERENCES scrum_project(id_project) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT uk_sp UNIQUE(id_project,start_date,end_date)
+);
+
+/*code for UUID insert*/
+INSERT INTO public."testUUID"(
+            id, value)
+    SELECT (SELECT id FROM (SELECT uuid_in((md5((random())::text))::cstring) as id) t WHERE id NOT IN (SELECT id FROM public."testUUID")), 'value 2';
+
+
 
 
 /*

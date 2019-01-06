@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+        <p:dataTable var="productBacklog" value="#{dataDisplay.lstProductBacklog()}">
+            <f:facet name="header">
+                PRODUCT BACKLOG
+            </f:facet>
+            <p:column headerText="Title">
+                <h:outputText value="#{productBacklog.title}"/>                
+            </p:column>
+            <p:column headerText="User Story">
+                <h:outputText value="As a #{productBacklog.type_of_user} I want to #{productBacklog.user_story} so that I can #{productBacklog.story_goal}"/>                
+            </p:column>
+            <p:column headerText="Domain">
+                <h:outputText value="#{productBacklog.domain}"/>
+            </p:column>
+            <p:column headerText="Priority">
+                <h:outputText value="#{productBacklog.item_priority}"/>
+            </p:column>
+            <p:column headerText="Estimation">
+                <h:outputText value="#{productBacklog.estimation}"/>
+            </p:column>
+            <p:column headerText="Acceptance">
+                <h:outputText value="#{productBacklog.acceptance}"/>
+            </p:column>
+        </p:dataTable>
+    </h:body>
+</html>
+

@@ -23,74 +23,14 @@
                             <p:submenu label="File">
                                 <p:submenu label="New">
                                     <p:menuitem ><h:commandLink value="Project" action="#{navigation.project()}"/></p:menuitem>
-                                    <ui:remove>
-                                        <p:menuitem ><h:commandLink value="Person" action="#{navigation.individual()}"/></p:menuitem>
-                                        <p:menuitem ><h:commandLink value="Company" action="#{navigation.company()}"/></p:menuitem>
-                                        <p:menuitem ><h:commandLink value="Company Type" action="#{navigation.companyType()}"/></p:menuitem>
-                                    </ui:remove>
-                                    <ui:remove>
-                                    <p:submenu label="Project Team">
-                                        <p:menuitem>
-                                            <h:commandLink value="Product owner" action="#{projectBean.selectProject()}">
-                                                <f:param name="member" value="Product owner"/>
-                                                <f:param name="userrole" value="Project owner"/>
-                                                <f:param name="pUserId" value="#{login.user}"/>
-                                            </h:commandLink>
-                                        </p:menuitem>
-                                        <p:menuitem>
-                                            <h:commandLink value="ScrumMaster" action="#{projectBean.selectProject()}">
-                                                <f:param name="member" value="ScrumMaster"/>
-                                                <f:param name="userrole" value="Product owner"/>
-                                                <f:param name="pUserId" value="#{login.user}"/>
-                                            </h:commandLink>
-                                        </p:menuitem>
-                                        <p:menuitem>
-                                            <h:commandLink value="Developper" action="#{projectBean.selectProject()}">
-                                                <f:param name="member" value="Developper"/>
-                                                <f:param name="userrole" value="ScrumMaster"/>
-                                                <f:param name="pUserId" value="#{login.user}"/>
-                                            </h:commandLink>
-                                        </p:menuitem>
-                                        <p:menuitem>
-                                            <h:commandLink value="Analyst" action="#{projectBean.selectProject()}">
-                                                <f:param name="member" value="Analyst"/>
-                                                <f:param name="userrole" value="ScrumMaster"/>
-                                                <f:param name="pUserId" value="#{login.user}"/>
-                                            </h:commandLink>
-                                        </p:menuitem>
-                                        <p:menuitem>
-                                            <h:commandLink value="Designer" action="#{projectBean.selectProject()}">
-                                                <f:param name="member" value="Designer"/>
-                                                <f:param name="userrole" value="ScrumMaster"/>
-                                                <f:param name="pUserId" value="#{login.user}"/>
-                                            </h:commandLink>
-                                        </p:menuitem>
-                                        <p:menuitem>
-                                            <h:commandLink value="Tester" action="#{projectBean.selectProject()}">
-                                                <f:param name="member" value="Tester"/>
-                                                <f:param name="userrole" value="ScrumMaster"/>
-                                                <f:param name="pUserId" value="#{login.user}"/>
-                                            </h:commandLink>
-                                        </p:menuitem>
-                                    </p:submenu>
-                                    </ui:remove>
-                                    <p:menuitem ><h:commandLink value="Project Team Member" action="#{projectBean.selectProject()}"/></p:menuitem>
-                                    <p:menuitem ><h:commandLink value="Telephone Number" action="#{navigation.telephone()}"/></p:menuitem>
+                                    
                                 </p:submenu>
-                                <p:menuitem ><h:commandLink value="Analysis Documents" action="analyse"/></p:menuitem>
+                                
                             </p:submenu>
                             <p:submenu label="Edit">
-                                <p:submenu label="Update">
-                                    <p:menuitem value="Project" url="#"/>
-                                    <p:menuitem value="Person" url="#"/>
-                                    <p:menuitem value="Company" url="#"/>
-                                    <p:menuitem value="Company Type" url="#"/>
-                                    <p:menuitem value="Telephone Number" url="#"/>
-                                </p:submenu>
+                                
                             </p:submenu>
-                            <p:submenu label="Follow-up">
-                                <p:menuitem><h:commandLink value="Daily Planned Tasks" action="dailyPannedTasks"/></p:menuitem>
-                            </p:submenu>
+                            
                             <p:submenu label="Settings">
                                 <p:menuitem value="Users" url="#"></p:menuitem>
                             </p:submenu>
@@ -109,7 +49,9 @@
                     <ui:insert name="left">
                         <h:form>
                             <ui:repeat value="#{dataCollection.projects(login.user)}" var="s">
-                                <h:commandLink value="#{s.projectName}"/> <br/><br/>
+                                <h:commandLink value="#{s.projectName}" action="#{navigation.projectMgment()}">
+                                    <f:param name="pIdProj" value="#{s.idProj}"/>
+                                </h:commandLink> <br/><br/>
                             </ui:repeat>
                         </h:form>                        
                     </ui:insert>

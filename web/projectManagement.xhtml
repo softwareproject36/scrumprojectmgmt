@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./templates/projectTemplate.xhtml">
+            
+            <!--
+            Menus
+            =====
+            -->
+            
+            <ui:define name="top">
+                
+                <!--Project owner-->
+                <h:form rendered="#{memberRoleBean.role(login.user, navigation.getpIdProj()) eq 'Project owner'}">
+                    <p:menubar>
+                        <p:submenu label="File">
+                            <p:submenu label="Add">
+                                <p:menuitem value="Product owner" url="/faces/selectMember.xhtml?pIdProj=#{navigation.getpIdProj()}&amp;userrole=Product owner"/>
+                            </p:submenu>
+                        </p:submenu>
+                        <p:submenu label="View">
+                            <p:menuitem value="Members"/>
+                            <p:menuitem>
+                                <h:commandLink value="Product Backlog" action="#{dataDisplay.productBacklog()}">
+                                    <f:param name="pIdProj" value="#{navigation.getpIdProj()}"/>
+                                </h:commandLink>
+                            </p:menuitem>
+                            <p:menuitem value="Sprint Backlog"/>
+                        </p:submenu>
+                        <p:submenu label="Follow-up">
+                            <p:menuitem><h:commandLink value="Daily Planned Tasks" action="dailyPannedTasks"/></p:menuitem>
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>
+                
+                <!--Product owner-->
+                <h:form rendered="#{memberRoleBean.role(login.user, navigation.getpIdProj()) eq 'Product owner'}">
+                    <p:menubar>
+                        <p:submenu label="File">
+                            <p:submenu label="Add">
+                                <p:menuitem value="ScrumMaster" url="/faces/selectMember.xhtml?pIdProj=#{navigation.getpIdProj()}&amp;userrole=ScrumMaster"/>
+                                <p:menuitem value="Product Backlog Items" url="/faces/productBacklog.xhtml?pIdProj=#{navigation.getpIdProj()}"/>
+                                
+                                <ui:remove>
+                                <p:menuitem>
+                                    <p:commandLink value="Product Backlog Items" action="#{navigation.productBacklog()}">
+                                        <f:param name="pIdProj" value="#{navigation.getpIdProj()}"/>
+                                    </p:commandLink>
+                                </p:menuitem>
+                                </ui:remove>
+                            </p:submenu>
+                            <p:menuitem ><h:commandLink value="Analysis Documents" action="analyse"/></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="View">
+                            <p:menuitem value="Members"/>
+                            <p:menuitem>
+                                <h:commandLink value="Product Backlog" action="#{dataDisplay.productBacklog()}">
+                                    <f:param name="pIdProj" value="#{navigation.getpIdProj()}"/>
+                                </h:commandLink>
+                            </p:menuitem>
+                            <p:menuitem value="Sprint Backlog"/>
+                        </p:submenu>
+                        <p:submenu label="Follow-up">
+                            <p:menuitem><h:commandLink value="Daily Planned Tasks" action="dailyPannedTasks"/></p:menuitem>
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>
+                
+                <h:form rendered="#{memberRoleBean.role(login.user, navigation.getpIdProj()) eq 'ScrumMaster'}">
+                    <p:menubar>
+                        <p:submenu label="File">
+                            <p:submenu label="Add">
+                                <p:submenu label="Team">
+                                    <p:menuitem value="Analyst" url="/faces/selectMember.xhtml?pIdProj=#{navigation.getpIdProj()}&amp;userrole=Analyst"/>
+                                    <p:menuitem value="Designer" url="/faces/selectMember.xhtml?pIdProj=#{navigation.getpIdProj()}&amp;userrole=Designer"/>
+                                    <p:menuitem value="Developper" url="/faces/selectMember.xhtml?pIdProj=#{navigation.getpIdProj()}&amp;userrole=Developper"/>
+                                    <p:menuitem value="Tester" url="/faces/selectMember.xhtml?pIdProj=#{navigation.getpIdProj()}&amp;userrole=Tester"/>
+                                </p:submenu>
+                                <p:menuitem value="Sprint" url="/faces/sprint.xhtml?pIdProj=#{navigation.getpIdProj()}"/>
+                                <p:menuitem value="Sprint Backlog Item"/>
+                            </p:submenu>
+                            <p:menuitem ><h:commandLink value="Analysis Documents" action="analyse"/></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="View">
+                            <p:menuitem value="Members"/>
+                            <p:menuitem>
+                                <h:commandLink value="Product Backlog" action="#{dataDisplay.productBacklog()}">
+                                    <f:param name="pIdProj" value="#{navigation.getpIdProj()}"/>
+                                </h:commandLink>
+                            </p:menuitem>
+                            <p:menuitem value="Sprint Backlog"/>
+                        </p:submenu>
+                        <p:submenu label="Follow-up">
+                            <p:menuitem><h:commandLink value="Daily Planned Tasks" action="dailyPannedTasks"/></p:menuitem>
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>
+                
+                <h:form rendered="#{memberRoleBean.role(login.user, navigation.getpIdProj()) eq 'Analyst'}">
+                    <p:menubar>
+                        <p:submenu label="File">
+                            <p:menuitem ><h:commandLink value="Analysis Documents" action="analyse"/></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="View">
+                            <p:menuitem value="Members"/>
+                            <p:menuitem>
+                                <h:commandLink value="Product Backlog" action="#{dataDisplay.productBacklog()}">
+                                    <f:param name="pIdProj" value="#{navigation.getpIdProj()}"/>
+                                </h:commandLink>
+                            </p:menuitem>
+                            <p:menuitem value="Sprint Backlog"/>
+                        </p:submenu>
+                        <p:submenu label="Follow-up">
+                            <p:menuitem><h:commandLink value="Daily Planned Tasks" action="dailyPannedTasks"/></p:menuitem>
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>
+                
+                <h:form rendered="#{memberRoleBean.role(login.user, navigation.getpIdProj()) eq 'Designer'}">
+                    <p:menubar>
+                        <p:submenu label="File">
+                            <p:menuitem ><h:commandLink value="Analysis Documents" action="analyse"/></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="View">
+                            <p:menuitem value="Members"/>
+                            <p:menuitem>
+                                <h:commandLink value="Product Backlog" action="#{dataDisplay.productBacklog()}">
+                                    <f:param name="pIdProj" value="#{navigation.getpIdProj()}"/>
+                                </h:commandLink>
+                            </p:menuitem>
+                            <p:menuitem value="Sprint Backlog"/>
+                        </p:submenu>
+                        <p:submenu label="Follow-up">
+                            <p:menuitem><h:commandLink value="Daily Planned Tasks" action="dailyPannedTasks"/></p:menuitem>
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>
+                
+                <h:form rendered="#{memberRoleBean.role(login.user, navigation.getpIdProj()) eq 'Developper'}">
+                    <p:menubar>
+                        <p:submenu label="File">
+                            <p:menuitem ><h:commandLink value="Analysis Documents" action="analyse"/></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="View">
+                            <p:menuitem value="Members"/>
+                            <p:menuitem>
+                                <h:commandLink value="Product Backlog" action="#{dataDisplay.productBacklog()}">
+                                    <f:param name="pIdProj" value="#{navigation.getpIdProj()}"/>
+                                </h:commandLink>
+                            </p:menuitem>
+                            <p:menuitem value="Sprint Backlog"/>
+                        </p:submenu>
+                        <p:submenu label="Follow-up">
+                            <p:menuitem><h:commandLink value="Daily Planned Tasks" action="dailyPannedTasks"/></p:menuitem>
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>
+                
+                <h:form rendered="#{memberRoleBean.role(login.user, navigation.getpIdProj()) eq 'Tester'}">
+                    <p:menubar>
+                        <p:submenu label="File">
+                            <p:menuitem ><h:commandLink value="Analysis Documents" action="analyse"/></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="View">
+                            <p:menuitem value="Members"/>
+                            <p:menuitem>
+                                <h:commandLink value="Product Backlog" action="#{dataDisplay.productBacklog()}">
+                                    <f:param name="pIdProj" value="#{navigation.getpIdProj()}"/>
+                                </h:commandLink>
+                            </p:menuitem>
+                            <p:menuitem value="Sprint Backlog"/>
+                        </p:submenu>
+                        <p:submenu label="Follow-up">
+                            <p:menuitem><h:commandLink value="Daily Planned Tasks" action="dailyPannedTasks"/></p:menuitem>
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="left">
+                <h:inputText value="#{navigation.getpIdProj()}"/><br/>
+                <ui:repeat value="#{dataCollection.listProjectMembers(navigation.getpIdProj())}" var="member">
+                    <p:commandLink value="#{member.name}"/><br/><br/>
+                </ui:repeat>
+            </ui:define>
+
+            <ui:define name="content">
+                content
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
